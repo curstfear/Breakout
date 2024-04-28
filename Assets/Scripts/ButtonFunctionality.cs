@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ButtonFunctionality : MonoBehaviour
 {
     [SerializeField] GameObject chooseLevelScreen;
-    public void RestartLevel()
+    public void Restart()
     {
         string sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName);
@@ -20,11 +20,6 @@ public class ButtonFunctionality : MonoBehaviour
     public void CloseChoosePanel()
     {
         chooseLevelScreen.SetActive(false);
-    }
-
-    public void ExitFromLevel()
-    {
-        SceneManager.LoadScene("MenuScene");
     }
 
     public void ExitFromGame()
