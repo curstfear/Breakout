@@ -11,6 +11,7 @@ public class CircleLogic : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Vector2 direction = new Vector2(0.5f, 0.5f);
     [SerializeField] GameObject loseScreen;
+    [SerializeField] GameObject winScreen;
     private Rigidbody2D _rb;
 
     public Text scoreText;
@@ -28,6 +29,7 @@ public class CircleLogic : MonoBehaviour
     {
         JumpLogic();
         UpdateScoreText();
+        ConditionForWin();
     }
 
     void JumpLogic()
@@ -97,5 +99,14 @@ public class CircleLogic : MonoBehaviour
     private void UpdateScoreText()
     {
         scoreText.text = "Score: " + score.ToString();
+    }
+    private void ConditionForWin()
+    {
+        string level = SceneManager.GetActiveScene().name;
+        if (level == "Level1" && score == 231)
+        {
+            Destroy(gameObject);
+            winScreen.SetActive(true);
+        }
     }
 }

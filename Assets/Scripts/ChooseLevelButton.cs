@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ChooseLevelButton : MonoBehaviour
 {
-    public void FirstLevelChoose()
+    public Text numberLevel;
+
+    public void LevelChoose()
     {
-        SceneManager.LoadScene("Level1");
+        int level = System.Convert.ToInt32(numberLevel);
+        SceneManager.LoadScene(level);
     }
 }
