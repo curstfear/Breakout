@@ -11,6 +11,7 @@ public class ButtonFunctionality : MonoBehaviour
         string sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName);
         GameManagerScript.score = 0;
+        Time.timeScale = 1f;
     }
     public void StartButton()
     {

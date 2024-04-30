@@ -10,11 +10,15 @@ public class GameManagerScript : MonoBehaviour
 
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject winScreen;
-    public AudioSource musicAudio;
-    public AudioSource winAudio;
+    [SerializeField] private AudioSource musicAudio;
     public Text scoreText;
     public static int score;
     private bool _isPaused = false;
+
+    private void Start()
+    {
+        Time.timeScale = 1f;
+    }
 
     void Update()
     {
@@ -44,16 +48,32 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
-    private void ConditionForWin()
+    void ConditionForWin()
     {
-        
         string level = SceneManager.GetActiveScene().name;
-        if (level == "Level1" && score == 232)
+        if (level == "Level1" && score >= 231)
         {
-            Destroy(gameObject);
             winScreen.SetActive(true);
+            Time.timeScale = 0f;
             musicAudio.Stop();
-            winAudio.Play();
+        }
+        if (level == "Level2" && score >= 147)
+        {
+            winScreen.SetActive(true);
+            Time.timeScale = 0f;
+            musicAudio.Stop();
+        }
+        if (level == "Level3" && score >= 210)
+        {
+            winScreen.SetActive(true);
+            Time.timeScale = 0f;
+            musicAudio.Stop();
+        }
+        if (level == "Level4" && score >= 189)
+        {
+            winScreen.SetActive(true);
+            Time.timeScale = 0f;
+            musicAudio.Stop();
         }
     }
     private void UpdateScoreText()

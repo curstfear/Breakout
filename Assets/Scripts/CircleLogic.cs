@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CircleLogic : MonoBehaviour
 {
-
+    
     
     [SerializeField] private float speed;
     [SerializeField] private Vector2 direction = new Vector2(0.5f, 0.5f);
@@ -20,6 +20,7 @@ public class CircleLogic : MonoBehaviour
 
     void Start()
     {
+        direction = new Vector2(Random.Range(-0.5f, 0.5f), -0.5f);
         _heroDead = false;
         _rb = GetComponent<Rigidbody2D>();
         loseScreen.SetActive(false);

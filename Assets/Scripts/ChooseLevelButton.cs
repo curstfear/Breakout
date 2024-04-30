@@ -10,7 +10,8 @@ public class ChooseLevelButton : MonoBehaviour
 
     public void LevelChoose()
     {
-        int level = System.Convert.ToInt32(numberLevel);
+        int level = System.Convert.ToInt32(numberLevel.text);
+        Debug.Log(level);
         SceneManager.LoadScene(level);
     }
 }
