@@ -10,7 +10,8 @@ public class GameManagerScript : MonoBehaviour
 
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject winScreen;
-    [SerializeField] public AudioSource musicAudio;
+    public AudioSource musicAudio;
+    public AudioSource winAudio;
     public Text scoreText;
     public static int score;
     private bool _isPaused = false;
@@ -21,7 +22,6 @@ public class GameManagerScript : MonoBehaviour
         {
             PauseFunction();
         }
-
         UpdateScoreText();
         ConditionForWin();
     }
@@ -52,6 +52,8 @@ public class GameManagerScript : MonoBehaviour
         {
             Destroy(gameObject);
             winScreen.SetActive(true);
+            musicAudio.Stop();
+            winAudio.Play();
         }
     }
     private void UpdateScoreText()
