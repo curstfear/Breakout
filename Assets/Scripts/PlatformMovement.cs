@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class PlatformMovement : MonoBehaviour
 {
-    public float _speed;
-    private Rigidbody2D _rb;
-    Vector3 movement;
+    [SerializeField] private float _speed;
     private bool _isBlock;
+    Vector3 movement;
+
+    private Rigidbody2D _rb;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    
+
     void FixedUpdate()
     {
         MoveLogic();
@@ -26,9 +28,5 @@ public class PlatformMovement : MonoBehaviour
         float moveInput = Input.GetAxis("Horizontal");
         movement = new Vector2(moveInput, 0f) * _speed;
         transform.position += movement;
-
-        /*moveInput.x = Input.GetAxis("Horizontal");
-        _rb.MovePosition(_rb.position + moveInput * _speed * Time.fixedDeltaTime);*/  
-        
     }
 }

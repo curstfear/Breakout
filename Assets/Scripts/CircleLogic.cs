@@ -7,17 +7,20 @@ using UnityEngine.UI;
 public class CircleLogic : MonoBehaviour
 {
 
-
+    
     [SerializeField] private float speed;
     [SerializeField] private Vector2 direction = new Vector2(0.5f, 0.5f);
-    [SerializeField] GameObject loseScreen;
-    private Rigidbody2D _rb;
-
     int courrentScore = GameManagerScript.score;
+
+    [SerializeField] GameObject loseScreen;
+    public AudioSource circleHitsPlatform;
+    public AudioSource circleHitsBlock;
+    private Rigidbody2D _rb;
+    public static bool _heroDead;
 
     void Start()
     {
-        
+        _heroDead = false;
         _rb = GetComponent<Rigidbody2D>();
         loseScreen.SetActive(false);
     }
@@ -40,11 +43,13 @@ public class CircleLogic : MonoBehaviour
         if (collision.collider.CompareTag("BlockOnSides"))
         {
             direction.x = -direction.x;
+            circleHitsPlatform.Play();
         }
         // Шарик меняет направление по Y при столкновении с верхним краем экрана или платформой(ракеткой)
         else if (collision.collider.CompareTag("BlockTop") || collision.collider.CompareTag("Platform"))
         {
             direction.y = -direction.y;
+            circleHitsPlatform.Play();
         }
 
         //Распределение очков каждому блоку
@@ -53,42 +58,64 @@ public class CircleLogic : MonoBehaviour
             direction.y = -direction.y;
             Destroy(collision.gameObject);
             GameManagerScript.score = ++courrentScore;
+            circleHitsBlock.Play();
+            circleHitsBlock.pitch = 1;
         }
         else if (collision.collider.CompareTag("OrangeScoreBlock"))
         {
+            int i = 2;
             direction.y = -direction.y;
             Destroy(collision.gameObject);
-            GameManagerScript.score = courrentScore += 2;
+            GameManagerScript.score = courrentScore += i;
+            circleHitsBlock.Play();
+            circleHitsBlock.pitch = i;
         }
         else if (collision.collider.CompareTag("GreenScoreBlock"))
         {
+            int i = 3;
+            circleHitsBlock.Play();
             direction.y = -direction.y;
             Destroy(collision.gameObject);
-            GameManagerScript.score = courrentScore += 3;
+            GameManagerScript.score = courrentScore += i;
+            circleHitsBlock.Play();
+            circleHitsBlock.pitch = i;
         }
         else if (collision.collider.CompareTag("PinkScoreBlock"))
         {
+            int i = 4;
+            circleHitsBlock.Play();
             direction.y = -direction.y;
             Destroy(collision.gameObject);
-            GameManagerScript.score = courrentScore += 4;
+            GameManagerScript.score = courrentScore += i;
+            circleHitsBlock.Play();
+            circleHitsBlock.pitch = i;
         }
         else if (collision.collider.CompareTag("VioletScoreBlock"))
         {
+            int i = 5;
+            circleHitsBlock.Play();
             direction.y = -direction.y;
             Destroy(collision.gameObject);
-            GameManagerScript.score = courrentScore += 5;
+            GameManagerScript.score = courrentScore += i;
+            circleHitsBlock.Play();
+            circleHitsBlock.pitch = i;
         }
         else if (collision.collider.CompareTag("BlueScoreBlock"))
         {
+            int i = 6;
+            circleHitsBlock.Play();
             direction.y = -direction.y;
             Destroy(collision.gameObject);
-            GameManagerScript.score = courrentScore += 6;
+            GameManagerScript.score = courrentScore += i;
+            circleHitsBlock.Play();
+            circleHitsBlock.pitch = i;
         }
         //Уничтожение шарика и отображение окна "Проигрыш" при столкновении с DeadZone
         else if (collision.collider.CompareTag("DeadZone"))
         {
             Destroy(gameObject);
             loseScreen.SetActive(true);
+            _heroDead = true;
         }
     }
 }
