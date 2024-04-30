@@ -7,10 +7,10 @@ public class ButtonFunctionality : MonoBehaviour
 {
     [SerializeField] GameObject chooseLevelScreen;
     public void RestartLevel()
-    {
+    {   
         string sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName);
-
+        GameManagerScript.score = 0;
     }
     public void StartButton()
     {
