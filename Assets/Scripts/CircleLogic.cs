@@ -117,6 +117,7 @@ public class CircleLogic : MonoBehaviour
             Destroy(gameObject);
             loseScreen.SetActive(true);
             _heroDead = true;
+            Time.timeScale = 0f;
         }
     }
 }

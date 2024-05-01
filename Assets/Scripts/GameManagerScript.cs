@@ -18,6 +18,7 @@ public class GameManagerScript : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
+        score = 0;
     }
 
     void Update()
@@ -63,13 +64,13 @@ public class GameManagerScript : MonoBehaviour
             Time.timeScale = 0f;
             musicAudio.Stop();
         }
-        if (level == "Level3" && score >= 210)
+        if (level == "Level3" && score >= 207)
         {
             winScreen.SetActive(true);
             Time.timeScale = 0f;
             musicAudio.Stop();
         }
-        if (level == "Level4" && score >= 189)
+        if (level == "Level4" && score >= 212)
         {
             winScreen.SetActive(true);
             Time.timeScale = 0f;
